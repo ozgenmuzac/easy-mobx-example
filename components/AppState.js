@@ -1,36 +1,31 @@
 import { observable } from 'mobx'
-import { getObjects, addObject, deleteObject } from 'cosmicjs'
 import config from '../config'
 
 export default class AppState {
   @observable posts = []
   @observable form_data = {}
-  @observable is_loading = true
   @observable is_saving = false
-  addPost(object) {
-    this.is_saving = true;
-    addObject({ bucket: config.cosmicjs.bucket }, object, (err, res) => {
-      this.is_saving = false
-      this.posts.unshift(res.object)
-      this.form_data = {
-        title: '',
-        content: ''
-      }
-    })
-  }
-  removePost(post) {
-    deleteObject({ bucket: config.cosmicjs.bucket }, { slug: post.slug }, (err, res) => {
-      this.posts = this.posts.filter(apost => {
-        return apost._id !== post._id
-      })
-    })
-  }
+  @observable evetPopupContent = {};
+  @observable hayirPopupComponent = {};
+  @observable evetBackgroundImage;
+  @observable hayirBackgroundImage;
+  @observable isLoading = true;
+  
   constructor() {
-    getObjects({ bucket: config.cosmicjs.bucket }, (err, res) => {
-      if (res.objects.type.posts) {
-        this.posts = res.objects.type.posts
-        this.is_loading = false
-      }
+    this.currentLevel = 1;
+    this.getNextFrame();
+  }
+
+  getNextFrame = () => {
+    this.isLoading = true;
+    $.getJSON(`/get-next-frame/?currentLevel=${this.currentLevel}`).then((data) => {
+      console.log("Data: ", data);
+      this.evetPopupContent = data.evet.popup;
+      this.evetBackgroundImage = data.evet.image;
+      this.hayirPopupComponent = data.hayir.popup;
+      this.hayirBackgroundImage = data.hayir.image;
+      this.isLoading = false;
+      this.currentLevel += 1;
     })
   }
 }
