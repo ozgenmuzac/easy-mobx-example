@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { FormGroup, FormControl, Input, Button } from 'react-bootstrap'
-import config from '../config'
-import slug from 'slug'
+import config from '../config';
 import S from 'shorti'
 import DevTools from 'mobx-react-devtools';
 import PopupComponent from './PopupComponent';
@@ -10,23 +9,6 @@ import styles from './custom.css';
 
 @observer
 export default class App extends Component {
-  handleInputChange(type, e) {
-    this.props.data.form_data[type] = e.target.value
-  }
-  handleSubmit(e) {
-    e.preventDefault()
-    const title = this.props.data.form_data.title
-    const content = this.props.data.form_data.content
-    if (!title)
-      return
-    const post = {
-      slug: slug(title),
-      type_slug: 'posts',
-      title,
-      content
-    }
-    this.props.data.addPost(post);
-  };
   hayirPopupButtonClick = () => {
     console.log("In click listener");
     this.props.data.getNextFrame
