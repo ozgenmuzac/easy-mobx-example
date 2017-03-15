@@ -35,11 +35,9 @@ export default class App extends Component {
     const data = this.props.data;
     const evetDivStyle = {
       backgroundImage: `url(${data.evetBackgroundImage})`,
-      backgroundSize: '100% auto'
-    };
-    const hayirDivStyle = {
-      backgroundImage: `url(${data.evetBackgroundImage})`,
-      backgroundSize: '100% auto'
+      backgroundSize: 'auto',
+      backgroundRepeat: 'no-repeat',
+      marginLeft: '12%'
     };
     const hiddenStyle = {
       visibility: 'hidden',
@@ -50,23 +48,20 @@ export default class App extends Component {
           <div className={styles.loader + ' text-center'}></div>
         ) : (
           <div>
-          <h1 className="mb-20 text-center">Cok basit gibi gözuken kararlar hayatini degistirir...</h1>
-          <div style={ S('mb-20') }>
-          </div>
-          <div className="row">
-            <div className="col-md-5" style={evetDivStyle}>
-              <img src={ data.evetBackgroundImage } style={hiddenStyle} className="img-responsive"/>
-              <button type="button" data-toggle="modal" data-target="#evetPopupId" className="btn btn-info text-center">EVET</button> 
+            <h1 className="mb-20 text-center">Cok basit gibi gözuken kararlar hayatini degistirir...</h1>
+            <div style={ S('mb-20') }>
             </div>
-            <div className="col-md-1"></div>
-            <div className="col-md-5" style={hayirDivStyle}>
-              <img src={ data.evetBackgroundImage } style={hiddenStyle} className="img-responsive"/>
-              <button type="button" data-toggle="modal" data-target="#hayirPopupId" className="btn btn-info text-center">HAYIR</button> 
+            <div style={evetDivStyle}>
+            <h1 className={styles.pt10 + ' mb-20 text-center'}>Cayina seker atar misin?</h1>
+              <img src={ data.evetBackgroundImage } style={hiddenStyle} />
+              <div className="row" >
+                <button type="button" data-toggle="modal" data-target="#evetPopupId" className={styles.mt25ml10 + ' btn btn-info btn-lg text-center col-md-3'}>EVET</button> 
+                <button type="button" data-toggle="modal" data-target="#hayirPopupId" className={styles.mt25ml40 +  ' btn btn-primary btn-lg text-center col-md-3'}>HAYIR</button> 
+              </div>
             </div>
-          </div>
-          <DevTools />
-          <PopupComponent popupData={ data.evetPopupContent} modalId='evetPopupId'/>
-          <PopupComponent popupData={ data.hayirPopupComponent} modalId='hayirPopupId' buttonClick={data.getNextFrame}/>
+            <DevTools />
+            <PopupComponent popupData={ data.evetPopupContent} modalId='evetPopupId'/>
+            <PopupComponent popupData={ data.hayirPopupComponent} modalId='hayirPopupId' buttonClick={data.getNextFrame}/>
           </div>
         )}
       </div>

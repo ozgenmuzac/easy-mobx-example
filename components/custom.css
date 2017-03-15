@@ -7,6 +7,37 @@
     animation: spin 2s linear infinite;
 }
 
+.mt20 {
+	margin-top: -10%;
+}
+
+.ml-3 {
+	margin-left: 3%;
+}
+
+.ml-12 {
+	margin-left: 12%;
+}
+
+.ml-40 {
+	margin-left: 40%;	
+}
+
+.mt25ml40 {
+	margin-top: -25%;
+	margin-left: 50%;
+}
+
+.mt25ml10 {
+	margin-top: -25%;
+	margin-left: 10%;
+}
+
+.pt10 {
+	padding-top: 10%;
+	font-size: 50px;
+}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
