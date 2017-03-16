@@ -17,9 +17,11 @@ export default class App extends Component {
     const data = this.props.data;
     const evetDivStyle = {
       backgroundImage: `url(${data.evetBackgroundImage})`,
-      backgroundSize: 'auto',
+      backgroundSize: '100% 100%',
       backgroundRepeat: 'no-repeat',
-      marginLeft: '12%'
+      margin: 'auto',
+      height: 546,
+      width: 728
     };
     const hiddenStyle = {
       visibility: 'hidden',
@@ -33,12 +35,11 @@ export default class App extends Component {
             <h1 className="mb-20 text-center">Cok basit gibi gözuken kararlar hayatini degistirir...</h1>
             <div style={ S('mb-20') }>
             </div>
-            <div style={evetDivStyle}>
+            <div style={evetDivStyle} className='img-responsive'>
             <h1 className={styles.pt10 + ' mb-20 text-center'}>Cayina seker atar misin?</h1>
-              <img src={ data.evetBackgroundImage } style={hiddenStyle} />
               <div className="row" >
-                <button type="button" data-toggle="modal" data-target="#evetPopupId" className={styles.mt25ml10 + ' btn btn-info btn-lg text-center col-md-3'}>EVET</button> 
-                <button type="button" data-toggle="modal" data-target="#hayirPopupId" className={styles.mt25ml40 +  ' btn btn-primary btn-lg text-center col-md-3'}>HAYIR</button> 
+                <button type="button" data-toggle="modal" data-target="#evetPopupId" className={' btn btn-info btn-lg text-center col-md-3'}>EVET</button> 
+                <button type="button" data-toggle="modal" data-target="#hayirPopupId" className={' btn btn-primary btn-lg text-center col-md-3'}>HAYIR</button> 
               </div>
             </div>
             <DevTools />
