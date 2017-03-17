@@ -4,7 +4,8 @@ import config from '../config'
 export default class AppState {
   @observable posts = []
   @observable form_data = {}
-  @observable is_saving = false
+  @observable is_saving = false;
+  @observable question;
   @observable evetPopupContent = {};
   @observable hayirPopupComponent = {};
   @observable evetBackgroundImage;
@@ -20,6 +21,7 @@ export default class AppState {
     this.isLoading = true;
     $.getJSON(`/get-next-frame/?currentLevel=${this.currentLevel}`).then((data) => {
       console.log("Data: ", data);
+      this.question = data.question;
       this.evetPopupContent = data.evet.popup;
       this.evetBackgroundImage = data.evet.image;
       this.hayirPopupComponent = data.hayir.popup;

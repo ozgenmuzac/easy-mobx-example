@@ -17,6 +17,7 @@ app.set('views', __dirname + '/')
 app.set('port', process.env.PORT || 3000)
 app.use(express.static(__dirname + '/public'))
 var Level = sequelize.define('levels', {
+  question: Sequelize.STRING,
   evetTitle: Sequelize.STRING,
   evetPopupTitle: Sequelize.STRING,
   evetPopupBody: Sequelize.STRING,
@@ -43,6 +44,7 @@ app.get('/get-next-frame', function(req, res){
 		const randValue = Math.floor(Math.random() * (data.length - 0)) ;
 		const levelData = data[randValue].dataValues;
 		res.json({
+			question: levelData.question,
 			evet: {
 				popup: {
 					title: levelData.evetPopupTitle,
