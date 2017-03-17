@@ -26,26 +26,33 @@ export default class App extends Component {
     const hiddenStyle = {
       visibility: 'hidden',
     }
+    const loaderStyle = {
+      margin: 'auto'
+    }
     return (
       <div style={ S('p-20') }>
-        { data.isLoading ? (
-          <div className={styles.loader + ' text-center'}></div>
-        ) : (
-          <div>
-            <h1 className="mb-20 text-center">Cok basit gibi gözuken kararlar hayatini degistirir...</h1>
-            <div style={ S('mb-20') }>
-            </div>
-            <div style={evetDivStyle} className='img-responsive'>
-            <h1 className={styles.pt10 + ' mb-20 text-center'}>{ data.question }</h1>
-              <div className={styles.mt40 + ' row'} >
-                <button type="button" data-toggle="modal" data-target="#evetPopupId" className={' btn btn-info btn-lg text-center col-md-3'}>EVET</button> 
-                <button type="button" data-toggle="modal" data-target="#hayirPopupId" className={' btn btn-primary btn-lg text-center col-md-3'}>HAYIR</button> 
+        { data.isCompleted ? (
+            <h1 className="text-center">Yalana, Talana, Soyguna, Fasizme #HAYIR</h1>
+          ) : (
+           data.isLoading ? (
+            <div className={styles.loader + ' text-center'} style={ loaderStyle }></div>
+          ) : (
+            <div>
+              <h1 className="mb-20 text-center">Cok basit gibi gözuken kararlar hayatini degistirir...</h1>
+              <div style={ S('mb-20') }>
               </div>
+              <div style={evetDivStyle} className='img-responsive'>
+              <h1 className={styles.pt10 + ' mb-20 text-center'}>{ data.question }</h1>
+                <div className={styles.mt40 + ' row'} >
+                  <button type="button" data-toggle="modal" data-target="#evetPopupId" className={' btn btn-info btn-lg text-center col-md-3'}>EVET</button> 
+                  <button type="button" data-toggle="modal" data-target="#hayirPopupId" className={' btn btn-primary btn-lg text-center col-md-3'}>HAYIR</button> 
+                </div>
+              </div>
+              <DevTools />
+              <PopupComponent popupData={ data.evetPopupContent} modalId='evetPopupId'/>
+              <PopupComponent popupData={ data.hayirPopupComponent} modalId='hayirPopupId' buttonClick={data.getNextFrame}/>
             </div>
-            <DevTools />
-            <PopupComponent popupData={ data.evetPopupContent} modalId='evetPopupId'/>
-            <PopupComponent popupData={ data.hayirPopupComponent} modalId='hayirPopupId' buttonClick={data.getNextFrame}/>
-          </div>
+          )
         )}
       </div>
     )

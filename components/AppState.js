@@ -11,6 +11,7 @@ export default class AppState {
   @observable evetBackgroundImage;
   @observable hayirBackgroundImage;
   @observable isLoading = true;
+  @observable isCompleted = false;
   
   constructor() {
     this.currentLevel = 1;
@@ -18,9 +19,12 @@ export default class AppState {
   }
 
   getNextFrame = () => {
+    if (this.currentLevel >= 5) {
+      this.isCompleted = true;
+      return;
+    }
     this.isLoading = true;
     $.getJSON(`/get-next-frame/?currentLevel=${this.currentLevel}`).then((data) => {
-      console.log("Data: ", data);
       this.question = data.question;
       this.evetPopupContent = data.evet.popup;
       this.evetBackgroundImage = data.evet.image;
