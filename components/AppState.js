@@ -9,7 +9,6 @@ export default class AppState {
   @observable evetPopupContent = {};
   @observable hayirPopupComponent = {};
   @observable evetBackgroundImage;
-  @observable hayirBackgroundImage;
   @observable isLoading = true;
   @observable isCompleted = false;
   
@@ -29,7 +28,6 @@ export default class AppState {
       this.evetPopupContent = data.evet.popup;
       this.evetBackgroundImage = data.evet.image;
       this.hayirPopupComponent = data.hayir.popup;
-      this.hayirBackgroundImage = data.hayir.image;
       this.isLoading = false;
       this.currentLevel += 1;
     })

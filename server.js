@@ -18,6 +18,7 @@ app.set('port', process.env.PORT || 3000)
 app.use(express.static(__dirname + '/public'))
 var Level = sequelize.define('levels', {
   question: Sequelize.STRING,
+  image: Sequelize.STRING,
   evetTitle: Sequelize.STRING,
   evetPopupTitle: Sequelize.STRING,
   evetPopupBody: Sequelize.STRING,
@@ -50,14 +51,13 @@ app.get('/get-next-frame', function(req, res){
 					title: levelData.evetPopupTitle,
 	      			body: levelData.evetPopupBody
 				},
-				image: 'cay-bardagi.jpg'
+				image: levelData.image
 			},
 			hayir: {
 				popup: {
 					title: levelData.hayirPopupTitle,
 	      			body: levelData.hayirPopupBody
-				},
-				image: 'cay-bardagi.jpg'
+				}
 			}
 		});
 	})
