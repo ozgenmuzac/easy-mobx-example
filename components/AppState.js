@@ -18,7 +18,7 @@ export default class AppState {
   }
 
   getNextFrame = () => {
-    if (this.currentLevel >= 5) {
+    if (this.currentLevel > 5) {
       this.isCompleted = true;
       return;
     }
