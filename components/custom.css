@@ -15,6 +15,10 @@
 	margin-top: 40%;
 }
 
+.mt5 {
+	margin-top: 5%;
+}
+
 .ml-3 {
 	margin-left: 3%;
 }
@@ -37,8 +41,8 @@
 	margin-left: 10%;
 }
 
-.pt10 {
-	padding-top: 10%;
+.pt5 {
+	padding-top: 5%;
 	font-size: 50px;
 }
 

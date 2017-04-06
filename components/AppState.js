@@ -12,10 +12,32 @@ export default class AppState {
   @observable isLoading = true;
   @observable isCompleted = false;
   @observable examQuestions = [];
-  
+  @observable currentQuestionData = {};
+  questionIterator = 0;
+  evetCount = 0;
+  hayirCount = 0; 
+
   constructor() {
     this.currentLevel = 1;
     this.getNextFrame();
+  }
+
+  getNextQuestion = source => {
+    if (source === 'evet') {
+      this.evetCount += 1;
+    }
+    else if (source === 'hayir') {
+      this.hayirCount += 1;
+    }
+    if(this.questionIterator == this.examQuestions.length) {
+      return;
+    }
+    this.currentQuestionData = {
+      question: this.examQuestions[this.questionIterator].question,
+      level: this.examQuestions[this.questionIterator].level,
+    }
+    this.questionIterator += 1;
+    return;
   }
 
   getNextFrame = () => {
@@ -24,18 +46,11 @@ export default class AppState {
       return;
     }
     this.isLoading = true;
-    $.getJSON(`/get-next-frame/?currentLevel=${this.currentLevel}`).then((data) => {
-      this.question = data.question;
-      this.evetPopupContent = data.evet.popup;
-      this.evetBackgroundImage = data.evet.image;
-      this.hayirPopupComponent = data.hayir.popup;
-      this.isLoading = false;
-      this.currentLevel += 1;
-    });
 
     $.getJSON('/get-questions').then((response) => {
       this.examQuestions = response.results;
-      console.log("EXAM QUESTIONSasd: ", response.results);
+      this.getNextQuestion();
+      this.isLoading = false;
     });
   }
 }

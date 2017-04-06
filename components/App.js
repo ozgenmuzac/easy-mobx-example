@@ -11,19 +11,9 @@ import styles from './custom.css';
 export default class App extends Component {
   hayirPopupButtonClick = () => {
     console.log("In click listener");
-    this.props.data.getNextFrame
   }
   render() {
     const data = this.props.data;
-    const evetDivStyle = {
-      backgroundImage: `url(${data.evetBackgroundImage})`,
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      margin: 'auto',
-      height: 546,
-      width: 728,
-      backgroundPosition: 'center'
-    };
     const hiddenStyle = {
       visibility: 'hidden',
     }
@@ -45,23 +35,22 @@ export default class App extends Component {
               <h1 className="mb-20 text-center">Cok basit gibi gözuken kararlar hayatini degistirir...</h1>
               <div style={ S('mb-20') }>
               </div>
-              <div style={evetDivStyle} className='img-responsive'>
-              <h1 className={styles.pt10 + ' mb-20 text-center'}>{ data.question }</h1>
-                <div className={styles.mt40 + ' clearfix'} >
-                  <div className="col-xs-4 col-xs-offset-1">
-                    <button type="button" data-toggle="modal" data-target="#evetPopupId" className={' btn btn-info btn-lg btn-block text-center col-md-3'}>EVET</button> 
-                  </div>
-                  <div className="col-xs-4 col-xs-offset-2">
-                    <button type="button" data-toggle="modal" data-target="#hayirPopupId" className={' btn btn-primary btn-lg btn-block text-center col-md-3'}>HAYIR</button> 
-                  </div>
+              <h1 className={styles.pt5 + ' mb-20 text-center'}>{ data.currentQuestionData.question }</h1>
+              <div className={styles.mt5 + ' clearfix'} >
+                <div className="col-xs-3 col-xs-offset-2">
+                  <button type="button" data-toggle="modal" className={' btn btn-info btn-lg btn-block text-center col-md-3'}
+                          onClick={() => data.getNextQuestion('evet')}>
+                    EVET
+                  </button> 
+                </div>
+                <div className="col-xs-3 col-xs-offset-2">
+                  <button type="button" data-toggle="modal" className={' btn btn-primary btn-lg btn-block text-center col-md-3'}
+                          onClick={() => data.getNextQuestion('hayir')}>
+                    HAYIR
+                  </button> 
                 </div>
               </div>
-              <ul>
-                {listItems}
-              </ul>
               <DevTools />
-              <PopupComponent popupData={ data.evetPopupContent} modalId='evetPopupId'/>
-              <PopupComponent popupData={ data.hayirPopupComponent} modalId='hayirPopupId' buttonClick={data.getNextFrame}/>
             </div>
           )
         )}
