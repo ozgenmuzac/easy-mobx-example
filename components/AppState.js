@@ -11,6 +11,7 @@ export default class AppState {
   @observable evetBackgroundImage;
   @observable isLoading = true;
   @observable isCompleted = false;
+  @observable examQuestions = [];
   
   constructor() {
     this.currentLevel = 1;
@@ -30,6 +31,11 @@ export default class AppState {
       this.hayirPopupComponent = data.hayir.popup;
       this.isLoading = false;
       this.currentLevel += 1;
-    })
+    });
+
+    $.getJSON('/get-questions').then((response) => {
+      this.examQuestions = response.results;
+      console.log("EXAM QUESTIONSasd: ", response.results);
+    });
   }
 }

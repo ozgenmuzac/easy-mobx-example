@@ -28,8 +28,16 @@ var Level = sequelize.define('levels', {
   level: Sequelize.INTEGER
 });
 
+var Question = sequelize.define('questions', {
+  questionText: Sequelize.STRING,
+  level: Sequelize.INTEGER
+});	
+
 Level.sync().then(() => {
 	console.log("Successfully synced");
+})
+Question.sync().then(() => {
+	console.log("Questions Successfully synced");
 })
 
 app.get('/', function(req, res){
@@ -61,6 +69,18 @@ app.get('/get-next-frame', function(req, res){
 			}
 		});
 	})
-})
+});
+app.get('/get-questions', function(req, res) {
+	Question.findAll().then(data => {
+		response = [];
+		data.forEach(val => {
+			response.push({
+				question:  val.questionText,
+				level: val.level
+			});
+		});
+		res.json({results: response});
+	})
+});
 console.log('Listening at localhost:' + app.get('port'))
 app.listen(app.get('port'))

@@ -30,6 +30,9 @@ export default class App extends Component {
     const loaderStyle = {
       margin: 'auto'
     }
+    const listItems = data.examQuestions.map((q) =>
+      <li>{q.question}</li>
+    );
     return (
       <div style={ S('p-20') }>
         { data.isCompleted ? (
@@ -53,6 +56,9 @@ export default class App extends Component {
                   </div>
                 </div>
               </div>
+              <ul>
+                {listItems}
+              </ul>
               <DevTools />
               <PopupComponent popupData={ data.evetPopupContent} modalId='evetPopupId'/>
               <PopupComponent popupData={ data.hayirPopupComponent} modalId='hayirPopupId' buttonClick={data.getNextFrame}/>
