@@ -20,13 +20,13 @@ export default class App extends Component {
     const loaderStyle = {
       margin: 'auto'
     }
-    const listItems = data.examQuestions.map((q) =>
-      <li>{q.question}</li>
-    );
     return (
       <div style={ S('p-20') }>
         { data.isCompleted ? (
-            <h1 className="text-center">Yalana, Talana, Soyguna, Fasizme #HAYIR</h1>
+            <div>
+              <h1 className="text-center">Toplam evet Sayin: {data.evetCount}</h1>
+              <h1 className="text-center">Toplam hayir Sayin:  {data.hayirCount}</h1>
+            </div>
           ) : (
            data.isLoading ? (
             <div className={styles.loader + ' text-center'} style={ loaderStyle }></div>

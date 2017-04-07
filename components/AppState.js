@@ -14,8 +14,8 @@ export default class AppState {
   @observable examQuestions = [];
   @observable currentQuestionData = {};
   questionIterator = 0;
-  evetCount = 0;
-  hayirCount = 0; 
+  @observable evetCount = 0;
+  @observable hayirCount = 0; 
 
   constructor() {
     this.currentLevel = 1;
@@ -30,6 +30,7 @@ export default class AppState {
       this.hayirCount += 1;
     }
     if(this.questionIterator == this.examQuestions.length) {
+      this.isCompleted = true;
       return;
     }
     this.currentQuestionData = {
@@ -41,10 +42,6 @@ export default class AppState {
   }
 
   getNextFrame = () => {
-    if (this.currentLevel > 5) {
-      this.isCompleted = true;
-      return;
-    }
     this.isLoading = true;
 
     $.getJSON('/get-questions').then((response) => {
