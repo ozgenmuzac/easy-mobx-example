@@ -32,7 +32,7 @@ export default class App extends Component {
             <div className={styles.loader + ' text-center'} style={ loaderStyle }></div>
           ) : (
             <div>
-              <h1 className="mb-20 text-center">Cok basit gibi gözuken kararlar hayatini degistirir...</h1>
+              <h1 className="mb-20 text-center">Hayır'a mı yakınsınız yoksa Evet'e mi?</h1>
               <div style={ S('mb-20') }>
               </div>
               <h1 className={styles.pt5 + ' mb-20 text-center'}>{ data.currentQuestionData.question }</h1>
