@@ -32,9 +32,11 @@ export default class AppState {
     }
     if(this.questionIterator == this.examQuestions.length) {
       if (this.evetCount > this.hayirCount) {
-        this.lastMessage = `Demek biraz kararsızsın, ne diyeceğini tam bilemiyorsun. Biraz daha düşün ve güçlü bir #Hayır demek için sandığa git, oyunu kullan ve sandığa sahip çık!`;
+        this.lastMessage = `Evet diyorsunuz. Hepimizin geleceği için bizce bir kez daha düşünün!!!`;
+      } else if ((this.evetCount*2) >= this.hayirCount){
+        this.lastMessage = `Demek henüz kararınızı vermediniz. Tekrar değerlendirin elbette. Biz ülkemiz ve geleceğimiz için #HAYIR demenin zorunlu olduğunu düşünüyoruz. Bu bize siz de katılın isteriz. `;
       } else {
-        this.lastMessage = `Demek #Hayır diyorsun. Son bir yapılacak iş kaldı. Sandığa git, oyunu kullan ve sandığa sahip çık!`;
+        this.lastMessage = `Siz de #HAYIR diyorsunuz. O zaman son bir yapılacak işimiz kaldı. Hep birlikte sandığa gidelim, oyumuzu kullanalım. Sandığımıza ve geleceğimize sahip çıkalım!`;
       }
       this.isCompleted = true;
       return;
