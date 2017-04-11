@@ -24,8 +24,8 @@ export default class App extends Component {
       <div style={ S('p-20') }>
         { data.isCompleted ? (
             <div>
-              <h1 className="text-center">Toplam evet Sayin: {data.evetCount}</h1>
-              <h1 className="text-center">Toplam hayir Sayin:  {data.hayirCount}</h1>
+              <h1 className={styles.mt15 + ' text-center'}>{data.lastMessage}</h1>
+              <h1 className={styles.fs50 + ' text-center'}>HAYIR++;</h1>
             </div>
           ) : (
            data.isLoading ? (
@@ -50,7 +50,6 @@ export default class App extends Component {
                   </button> 
                 </div>
               </div>
-              <DevTools />
             </div>
           )
         )}
