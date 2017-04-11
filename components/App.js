@@ -26,6 +26,12 @@ export default class App extends Component {
             <div>
               <h1 className={styles.mt15 + ' text-center'}>{data.lastMessage}</h1>
               <h1 className={styles.fs50 + ' text-center'}>HAYIR++;</h1>
+              <h3 className={styles.mt5 + ' text-center'}>
+                  Müşahit olmak için: &nbsp;
+                  <a href='http://www.oyumguvende.org'>http://www.oyumguvende.org</a>
+                  &nbsp; veya &nbsp;  
+                  <a href='http://www.hayirveotesi.org'>http://www.hayirveotesi.org</a>
+              </h3>
             </div>
           ) : (
            data.isLoading ? (

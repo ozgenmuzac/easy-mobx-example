@@ -31,12 +31,10 @@ export default class AppState {
       this.hayirCount += 1;
     }
     if(this.questionIterator == this.examQuestions.length) {
-      if (this.hayirCount > (this.evetCount*2)) {
-        this.lastMessage = `Demek referanduma #Hayır diyorsun, en güzeli!`;
-      } else if (this.evetCount > this.hayirCount) {
-        this.lastMessage = `Demek #Hayır demeye biraz uzaksın. Hala geç değil, biraz daha düşün ve güçlü bir #Hayır de!`;
+      if (this.evetCount > this.hayirCount) {
+        this.lastMessage = `Demek biraz kararsızsın, ne diyeceğini tam bilemiyorsun. Biraz daha düşün ve güçlü bir #Hayır demek için sandığa git, oyunu kullan ve sandığa sahip çık!`;
       } else {
-        this.lastMessage = `Seni biraz kararsız gördüm ama güçlü bir #Hayır'a çok yakınsın!`;
+        this.lastMessage = `Demek #Hayır diyorsun. Son bir yapılacak iş kaldı. Sandığa git, oyunu kullan ve sandığa sahip çık!`;
       }
       this.isCompleted = true;
       return;
