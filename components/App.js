@@ -21,6 +21,9 @@ export default class App extends Component {
     const loaderStyle = {
       margin: 'auto'
     }
+    const containerStyle = {
+      width: '250px'
+    };
     if (data.isKararsiz) {
       lastText = (
         <h3 className={styles.mt5 + ' text-center'}>
@@ -33,7 +36,15 @@ export default class App extends Component {
           <a href='http://www.bmo.org.tr/2017/03/22/anayasa-degisikligi-teklifi-ne-getiriyor-ne-goturuyor-neyi-oylayacagiz/'>http://www.bmo.org.tr/2017/03/22/anayasa-degisikligi-teklifi-ne-getiriyor-ne-goturuyor-neyi-oylayacagiz/</a>
         </h3>
       ) 
-    } else if (!data.isKararsiz && !data.isEvet) {
+    } else if (data.isEvet) {
+      lastText = (
+        <h3 className={styles.mt5 + ' text-center'}>
+          Detaylı bir inceleme için ilgili çalışmaya başvurabilirsiniz:
+          <br/>
+          <a href='http://anayasadegisikligi.barobirlik.org.tr/Anayasa_Degisikligi.aspx'>http://anayasadegisikligi.barobirlik.org.tr/Anayasa_Degisikligi.aspx</a>
+        </h3>
+      )
+    } else {
       lastText = (
         <h3 className={styles.mt5 + ' text-center'}>
           Müşahit olmak için:
