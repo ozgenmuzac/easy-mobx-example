@@ -14,11 +14,35 @@ export default class App extends Component {
   }
   render() {
     const data = this.props.data;
+    let lastText = null;
     const hiddenStyle = {
       visibility: 'hidden',
     }
     const loaderStyle = {
       margin: 'auto'
+    }
+    if (data.isKararsiz) {
+      lastText = (
+        <h3 className={styles.mt5 + ' text-center'}>
+          İnceleme için ilgili kaynaklardan faydalanabilirsiniz:
+          <br/>
+          <a href='http://anayasadegisikligi.barobirlik.org.tr/Anayasa_Degisikligi.aspx'>http://anayasadegisikligi.barobirlik.org.tr/Anayasa_Degisikligi.aspx</a>
+          <br/>  
+          <a href='https://hayir.tmmob.org.tr/kategori/belgeler/'>https://hayir.tmmob.org.tr/kategori/belgeler/</a>
+          <br/>
+          <a href='http://www.bmo.org.tr/2017/03/22/anayasa-degisikligi-teklifi-ne-getiriyor-ne-goturuyor-neyi-oylayacagiz/'>http://www.bmo.org.tr/2017/03/22/anayasa-degisikligi-teklifi-ne-getiriyor-ne-goturuyor-neyi-oylayacagiz/</a>
+        </h3>
+      ) 
+    } else if (!data.isKararsiz && !data.isEvet) {
+      lastText = (
+        <h3 className={styles.mt5 + ' text-center'}>
+          Müşahit olmak için:
+          <br/>
+          <a href='http://www.oyumguvende.org'>http://www.oyumguvende.org</a>
+          <br/>
+          <a href='http://www.hayirveotesi.org'>http://www.hayirveotesi.org</a>
+        </h3>
+      )
     }
     return (
       <div style={ S('p-20') }>
@@ -26,12 +50,7 @@ export default class App extends Component {
             <div>
               <h1 className={styles.mt15 + ' text-center'}>{data.lastMessage}</h1>
               <h1 className={styles.fs50 + ' text-center'}>HAYIR++;</h1>
-              <h3 className={styles.mt5 + ' text-center'}>
-                  Müşahit olmak için: &nbsp;
-                  <a href='http://www.oyumguvende.org'>http://www.oyumguvende.org</a>
-                  &nbsp; veya &nbsp;  
-                  <a href='http://www.hayirveotesi.org'>http://www.hayirveotesi.org</a>
-              </h3>
+              { lastText }
             </div>
           ) : (
            data.isLoading ? (
